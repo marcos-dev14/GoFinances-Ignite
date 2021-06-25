@@ -5,17 +5,20 @@ import { TextInputProps } from "react-native";
 import { Input } from '../Input';
 
 import {
-  Container
+  Container,
+  Error
 } from './styles';
 
 interface InputFormProps extends TextInputProps {
   control: Control;
   name: string;
+  error: string;
 }
 
 export function InputForm({ 
   control,
   name,
+  error,
   ...rest
 }: InputFormProps) {
   return (
@@ -31,6 +34,8 @@ export function InputForm({
         )}
         name={name}
       />
+
+      {error && <Error>{error}</Error>}
     </Container>
   );
 }
