@@ -104,6 +104,5 @@ export const TransactionList = styled(
   contentContainerStyle: {
     paddingBottom: getBottomSpace()
   }
-})`
-`;
+})``;
 
