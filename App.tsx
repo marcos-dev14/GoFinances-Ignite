@@ -10,8 +10,9 @@ import {
   Poppins_700Bold
 } from '@expo-google-fonts/poppins';
 
-import theme from './src/global/styles/theme';
 import { Register } from './src/screens/Register';
+
+import theme from './src/global/styles/theme';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
