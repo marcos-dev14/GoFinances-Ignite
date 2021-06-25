@@ -1,7 +1,14 @@
+import 'react-native-gesture-handler';
+
+import { NavigationContainer } from '@react-navigation/native'
+
 import { StatusBar } from 'expo-status-bar';
-import AppLoading from 'expo-app-loading';
 import React from 'react';
+import AppLoading from 'expo-app-loading';
+
 import { ThemeProvider } from 'styled-components';
+
+import { AppRoutes } from './src/routes/app.routes';
 
 import {
   useFonts,
@@ -9,8 +16,6 @@ import {
   Poppins_500Medium,
   Poppins_700Bold
 } from '@expo-google-fonts/poppins';
-
-import { Register } from './src/screens/Register';
 
 import theme from './src/global/styles/theme';
 
@@ -27,8 +32,11 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Register />
-      <StatusBar style="auto"  />
+      <NavigationContainer>
+        <AppRoutes />
+        <StatusBar style="auto"  />
+
+      </NavigationContainer>
     </ThemeProvider>
   );
 }
