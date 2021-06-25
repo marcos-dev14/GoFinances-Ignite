@@ -17,6 +17,8 @@ interface HighlightCardProps {
   lastTransaction: string;
 }
 
+ 
+// variável icon para fazer a manipulação das cores
 const icon = {
   up: 'arrow-up-circle',
   down: 'arrow-down-circle',
