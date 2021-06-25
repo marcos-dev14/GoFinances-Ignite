@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Modal } from 'react-native';
+import { useForm } from 'react-hook-form';
 
 import { Input } from '../../components/Form/Input';
+import { InputForm } from '../../components/Form/InputForm';
 import { Button } from '../../components/Form/Button';
 import { TransactionTypeButton } from '../../components/Form/TransactionTypeButton';
 import { CategorySelectButton } from '../../components/Form/CategorySelectButton';
+import { CategorySelect } from '../CategorySelect';
 
 import {
   Container,
@@ -14,8 +17,11 @@ import {
   Fields,
   TransactionsTypes
 } from './styles';
-import { CategorySelect } from '../CategorySelect';
-import { categories } from '../../utils/categories';
+
+interface FormDataProps {
+  name: string;
+  amount: string;
+}
 
 export function Register() {
   const [transactionType, setTransactionType] = useState('');
@@ -26,6 +32,7 @@ export function Register() {
     name: 'Categoria',
   });
    
+  const { control, handleSubmit } = useForm();
 
   function handleTransactionsTypeSelect(type: 'up' | 'down') {
     setTransactionType(type);
@@ -39,6 +46,18 @@ export function Register() {
     setCategoryModalOpen(false)
   }
 
+  function handleRegister(form: FormDataProps) {
+    const data = {
+      name: form.name,
+      amount: form.amount,
+      transactionType,
+      category: category.key
+    }
+
+
+    console.log(data)
+  }
+
   return (
     <Container>
       <Header>
@@ -47,10 +66,14 @@ export function Register() {
 
       <Form>
         <Fields>
-          <Input 
+          <InputForm 
+            name="name"
+            control={control}
             placeholder="Nome"
           />
-          <Input 
+          <InputForm 
+            name="amount"
+            control={control}
             placeholder="Preço"
           />
 
@@ -76,7 +99,7 @@ export function Register() {
         </Fields>
         <Button 
           title="Enviar"
-          activeOpacity={.7}  
+          onPress={handleSubmit(handleRegister)}
         />
       </Form>
 
